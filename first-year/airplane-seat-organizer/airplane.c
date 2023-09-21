@@ -105,7 +105,7 @@ bool assignSeat(int rowNum, char seatChar) {
 	}
 }
 
-// checking if the user wants to get another seat
+// checking if the user wants to get another seat or not
 char checkUserAnswer(char userAnswer) {
 	printf("Do you want to get another seat? \n[Y] Yes\n[N] No\nChoice: ");
 	scanf(" %c", 
@@ -122,7 +122,7 @@ char checkUserAnswer(char userAnswer) {
 	return userAnswer;
 }
 
-// main function
+// main function 
 int main(int argc, const char * argv[])  {
 	char userAnswer; // variable for retrying the program
 	
