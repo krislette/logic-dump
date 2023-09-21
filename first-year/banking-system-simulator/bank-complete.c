@@ -15,9 +15,9 @@ struct accountDetails {
     char accountNumber[6];
     char accountPin[5];
     float accountBalance;
-} accounts[MAX_ACC_DETAILS]; // array of structure for holding the account details 
+} accounts[MAX_ACC_DETAILS]; // array of structures for holding the account details 
 
-// function prototypes... each is discussed thoroughly on their respective definition
+// function prototypes... each functon is discussed thoroughly on their respective definition
 void dividerDesign(int);
 int fileChecker();
 void readAccounts();
