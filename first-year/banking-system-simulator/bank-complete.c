@@ -83,16 +83,14 @@ int main(int argc, const char * argv[]) {
                 break;
             }
         }
-    } while(1);
+    } while (1);
 
     return 0;
 }
 
 // function for printing '='
 void dividerDesign(int count) {
-    int i;
-
-    for (i = 0; i < count - 1; i++) {
+    for (int i = 0; i < count - 1; i++) {
         printf("=");
     }   
     printf("=\n");
@@ -109,12 +107,14 @@ int fileChecker() {
         fclose(file);
         dividerDesign(80);
         printf("\n");
+
         return 0; 
     }
     dividerDesign(80);
     printf("\n\t\t\t   File opened successfully.\n\n");
     fclose(file);
     dividerDesign(80);
+
     return 1; 
 }
 
@@ -160,16 +160,14 @@ int getDateDay(int month) {
             while (getchar() != '\n');
             printf("Day: ");
         }
-    }
-    else if (month == 2) {
+    } else if (month == 2) {
         while (scanf("%d", &day) != 1 || day < 1 || day > 28) {
             printf("Invalid input. Enter days from 1-28 only.\n");
 
             while (getchar() != '\n');
             printf("Day: ");
         }
-    }
-    else {
+    } else {
         while (scanf("%d", &day) != 1 || day < 1 || day > 31) {
             printf("Invalid input. Enter days from 1-31 only.\n");
 
@@ -404,8 +402,7 @@ void deleteAccount() {
             dividerDesign(80);
             printf("\n");
             return; // returns to the first segment of the program
-        }
-        else {
+        } else {
             int numberInp;
             char deleteAcc[6];
             int accInd;
@@ -589,11 +586,11 @@ void depositMoney(int index, int month, int day, int year) {
         givenBalanceTemp += deposit; 
 
         // checks if the current balance is too large for the bank to handle
-        if (givenBalanceTemp > 1000000.0)
+        if (givenBalanceTemp > 1000000.0) {
             printf("Invalid amount. Your deposit have exceeded the bank capacity.\n\n");
-        else if (deposit < 500.0)
+        } else if (deposit < 500.0) {
             printf("Invalid amount. The minimum deposit amount should be 500.00.\n\n");
-        else {
+        } else {
             accounts[index].accountBalance = givenBalanceTemp;
             printf("Amount successfully deposited to your account.\n\n");
 
@@ -629,11 +626,11 @@ void withdrawMoney(int index, int month, int day, int year) {
 
         // checks if the desired amount to withdraw is
         // greater than the user's current balance
-        if (withdraw > accounts[index].accountBalance)
+        if (withdraw > accounts[index].accountBalance) {
             printf("Invalid amount. The amount you want to withdraw exceeded your current balance.\n\n");
-        else if (withdraw < 500.0) 
+        } else if (withdraw < 500.0) {
             printf("Invalid amount. The minimum withdrawal amount should be 500.00.\n\n");
-        else {
+        } else {
             accounts[index].accountBalance -= withdraw;
             printf("Amount successfully withdrawn from your account.\n\n");
 
