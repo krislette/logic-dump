@@ -17,8 +17,7 @@ struct accountDetails {
     float accountBalance;
 } accounts[MAX_ACC_DETAILS]; // array of structure for holding the account details 
 
-// function prototypes
-// each function is discussed thoroughly on their respective definition
+// function prototypes... each is discussed thoroughly on their respective definition
 void dividerDesign(int);
 int fileChecker();
 void readAccounts();
@@ -624,8 +623,7 @@ void withdrawMoney(int index, int month, int day, int year) {
             printf("Enter the amount you want to withdraw: ");
         }
 
-        // checks if the desired amount to withdraw is
-        // greater than the user's current balance
+        // checks if the desired amount to withdraw is greater than the user's current balance
         if (withdraw > accounts[index].accountBalance) {
             printf("Invalid amount. The amount you want to withdraw exceeded your current balance.\n\n");
         } else if (withdraw < 500.0) {
