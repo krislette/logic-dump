@@ -5,8 +5,8 @@ int oddIndex = 0; // index and size tracker of odd numbers
 
 // function for placing odd and even numbers into their respective arrays
 void oddEven(int numArray[], int arraySize, int evenArray[], int oddArray[]) {
-    for(int i = 0; i < arraySize; i++) {
-        if(numArray[i] % 2 == 0) {
+    for (int i = 0; i < arraySize; i++) {
+        if (numArray[i] % 2 == 0) {
             evenArray[evenIndex] = numArray[i];
             evenIndex++;
         } else {
@@ -19,7 +19,7 @@ void oddEven(int numArray[], int arraySize, int evenArray[], int oddArray[]) {
 // function for printing odd numbers
 void printOdd(int oddArray[]) {
     printf("Odd Numbers: ");
-    for(int i = 0; i < oddIndex; i++) {
+    for (int i = 0; i < oddIndex; i++) {
         printf("%d ", oddArray[i]);
     }
 }
@@ -27,7 +27,7 @@ void printOdd(int oddArray[]) {
 // function for printing even numbers
 void printEven(int evenArray[]) {
     printf("\nEven Numbers: ");
-    for(int i = 0; i < evenIndex; i++) {
+    for (int i = 0; i < evenIndex; i++) {
         printf("%d ", evenArray[i]);
     }
 }
