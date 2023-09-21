@@ -96,11 +96,11 @@ int main(int argc, const char * argv[])  {
             	printf("\t\t\t\b\b\b%d %c %c %c %c", seats[i].row, seats[i].a, seats[i].b, seats[i].c, seats[i].d);
 				printf("\n");
         	}
-    	} else {
+		} else {
         	printf("\t    Your seat is already taken.\n");
 			printf("---------------------------------------------------\n");
         	goto A; // passes the program control back to user input if the desired location is already occupied
-    	}
+		}
 
 		// checking if all of the passenger seats are occupied
 		if (count == 20) {
