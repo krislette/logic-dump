@@ -105,7 +105,7 @@ bool assignSeat(int rowNum, char seatChar) {
 	}
 }
 
-// checking if the user wants to get another seat or not
+// checking if the user wants to get another seat
 char checkUserAnswer(char userAnswer) {
 	printf("Do you want to get another seat? \n[Y] Yes\n[N] No\nChoice: ");
 	scanf(" %c", 
