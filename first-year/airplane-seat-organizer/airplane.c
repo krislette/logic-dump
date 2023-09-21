@@ -92,7 +92,7 @@ int main(int argc, const char * argv[])  {
 		
 		// printing the passenger seats after marking the empty seat with 'X'
 		if (found) {
-        	for (int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) {
             	printf("\t\t\t\b\b\b%d %c %c %c %c", seats[i].row, seats[i].a, seats[i].b, seats[i].c, seats[i].d);
 				printf("\n");
         	}
