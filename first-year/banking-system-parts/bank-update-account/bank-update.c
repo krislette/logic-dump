@@ -35,13 +35,12 @@ void displayQuestion();
 
 // main function
 int main(int argc, const char * argv[]) {
-    
     fileChecker();
 
     readAccounts();
 
     // checks if the file has any account details in it
-    if(indexAccounts == 0) {
+    if (indexAccounts == 0) {
         printf("\n");
         dividerDesign(80);
         printf("\nDatabase empty. No existing account found.\n\n");
@@ -89,7 +88,7 @@ int main(int argc, const char * argv[]) {
         printf("Press the number of your choice: ");
         choice = getInput(1, 3); // has two parameters: min, max
 
-        switch(choice) {
+        switch (choice) {
             case 1: {
                 depositMoney(accountIndex, month, day, year);
                 break;
@@ -102,22 +101,20 @@ int main(int argc, const char * argv[]) {
                 printf("\nAre you sure you want to exit the program?\n\n[1] Yes\n[2] No\n\nChoice: ");
                 int exitChoice = getInput(1, 2);
 
-                if(exitChoice == 1) {
+                if (exitChoice == 1) {
                     printf("\nThank you for using the program.\n");
                     return 0;
                 }
             }
         }
-    } while(1);
+    } while (1);
 
     return 0;
 }
 
 // function for printing '='
-void dividerDesign(int count) {
-    int i;
-
-    for(i = 0; i < count - 1; i++) {
+void dividerDesign(int count) { 
+    for (int i = 0; i < count - 1; i++) {
         printf("=");
     }   
     printf("=\n");
@@ -127,7 +124,7 @@ void dividerDesign(int count) {
 int fileChecker() {
     file = fopen(BANK_DETAILS_FILE, "r"); // opens the file in read mode
 
-    if(file == NULL) {
+    if (file == NULL) {
         dividerDesign(80);
         printf("\n\t\t\t\t\b\bUnable to open file.\n\n");
         fclose(file);
@@ -146,10 +143,10 @@ int fileChecker() {
 void readAccounts() {
     file = fopen(BANK_DETAILS_FILE, "r");
 
-    for(int i = 0; i < MAX_ACC_DETAILS; i++) {
+    for (int i = 0; i < MAX_ACC_DETAILS; i++) {
         fscanf(file, "%s %s %f\n", accounts[i].accountNumber, accounts[i].accountPin, &accounts[i].accountBalance);
 
-        if(strlen(accounts[i].accountNumber) != 0) {
+        if (strlen(accounts[i].accountNumber) != 0) {
             indexAccounts++;
         }
     }
@@ -160,10 +157,10 @@ int getDateMonth() {
     int month;
 
     printf("Month: ");
-    while(scanf("%d", &month) != 1 || month < 1 || month > 12) {
+    while (scanf("%d", &month) != 1 || month < 1 || month > 12) {
         printf("Invalid input. Enter a valid number for month.\n");
 
-        while(getchar() != '\n');
+        while (getchar() != '\n');
         printf("Month: ");
     }
 
@@ -174,27 +171,25 @@ int getDateDay(int month) {
     int day;
 
     printf("Day: ");
-    if(month == 4 || month == 6 || month == 9 || month == 11) {
-        while(scanf("%d", &day) != 1 || day < 1 || day > 30) {
+    if (month == 4 || month == 6 || month == 9 || month == 11) {
+        while (scanf("%d", &day) != 1 || day < 1 || day > 30) {
             printf("Invalid input. Enter days from 1-30 only.\n");
 
-            while(getchar() != '\n');
+            while (getchar() != '\n');
             printf("Day: ");
         }
-    }
-    else if(month == 2) {
-        while(scanf("%d", &day) != 1 || day < 1 || day > 28) {
+    } else if (month == 2) {
+        while (scanf("%d", &day) != 1 || day < 1 || day > 28) {
             printf("Invalid input. Enter days from 1-28 only.\n");
 
-            while(getchar() != '\n');
+            while (getchar() != '\n');
             printf("Day: ");
         }
-    }
-    else {
-        while(scanf("%d", &day) != 1 || day < 1 || day > 31) {
+    } else {
+        while (scanf("%d", &day) != 1 || day < 1 || day > 31) {
             printf("Invalid input. Enter days from 1-31 only.\n");
 
-            while(getchar() != '\n');
+            while (getchar() != '\n');
             printf("Day: ");
         }
     }
@@ -206,10 +201,10 @@ int getDateYear() {
     int year;
 
     printf("Year: ");
-    while(scanf("%d", &year) != 1 || year < 1000 || year > 9999) {
+    while (scanf("%d", &year) != 1 || year < 1000 || year > 9999) {
         printf("Invalid input. Enter a valid year.\n");
 
-        while(getchar() != '\n');
+        while (getchar() != '\n');
         printf("Year: ");
     }
 
@@ -219,7 +214,7 @@ int getDateYear() {
 // function for writing data entered into a text file
 void writeFile() {
     file = fopen(BANK_DETAILS_FILE, "w");
-    for(int i = 0; i < indexAccounts; i++) {
+    for (int i = 0; i < indexAccounts; i++) {
         fprintf(file, "%s %s %0.2f\n", accounts[i].accountNumber, accounts[i].accountPin, accounts[i].accountBalance);
     }
     fclose(file);
@@ -232,21 +227,21 @@ void pinChecker(int index) {
     
     printf("Enter PIN: ");
     // takes an integer account number input from the user to be checked 
-    while(scanf("%d", &numberInput) != 1) {
+    while (scanf("%d", &numberInput) != 1) {
     	printf("Invalid input. Try again.\n");
     	
-    	while(getchar() != '\n');
+    	while (getchar() != '\n');
     	printf("Enter PIN: ");
 	}
 	// checks if the account number inputted by the user is a 4-digit number
-	if(numberInput > 9999 || numberInput < 1000) {
+	if (numberInput > 9999 || numberInput < 1000) {
 		printf("Invalid input. Your PIN should consist of 4 digits only.\n");
 		return pinChecker(index);
 	}
 	// converts the int input to string and stores 
 	itoa(numberInput, pin, 10); // syntax: itoa(int value, char str, int base) 
 
-    if(strcmp(pin, accounts[index].accountPin) != 0) {
+    if (strcmp(pin, accounts[index].accountPin) != 0) {
         printf("The pin you have entered is incorrect. Try again.\n");
         return pinChecker(index);
     }
@@ -261,29 +256,29 @@ int accountNoChecker() {
 	
     printf("Enter account number: ");
     // takes an integer account number input from the user to be checked 
-    while(scanf("%d", &numberInput) != 1) {
+    while (scanf("%d", &numberInput) != 1) {
     	printf("Invalid input. Try again.\n");
     	
-    	while(getchar() != '\n');
+    	while (getchar() != '\n');
     	printf("Enter account number: ");
 	}
 	// checks if the account number inputted by the user is a 5-digit number
-	if(numberInput > 99999 || numberInput < 10000) {
+	if (numberInput > 99999 || numberInput < 10000) {
 		printf("Invalid input. Your account number should consist of 5 digits only.\n");
 		return accountNoChecker();
 	}
 	// converts the int input to string and stores 
 	itoa(numberInput, accNo, 10); // syntax: itoa(int value, char str, int base) 
 
-    for(int i = 0; i < MAX_ACC_DETAILS; i++) {
-        if(strcmp(accounts[i].accountNumber, accNo) == 0) {
+    for (int i = 0; i < MAX_ACC_DETAILS; i++) {
+        if (strcmp(accounts[i].accountNumber, accNo) == 0) {
             found = 1;
             index = i;
             pinChecker(i);
         }
     }
 
-    if(!found) {
+    if (!found) {
         printf("Account Number not found. Try again.\n");
         return accountNoChecker();
     }
@@ -293,7 +288,7 @@ int accountNoChecker() {
 
 // function for checking if the choice entered by the user is a valid input
 int validInputChecker(int input, int min, int max) {
-    if(input < min || input > max) return 0;
+    if (input < min || input > max) return 0;
     else return 1;
 }
 
@@ -306,10 +301,10 @@ int getInput(int min, int max) {
 
     int validInput = validInputChecker(userInput, min, max);
 
-    if(!validInput) {
+    if (!validInput) {
 		printf("Invalid input. Enter numbers from %d-%d only.\n", min, max);
 
-		while(getchar() != '\n');  // clears the input buffer
+		while (getchar() != '\n');  // clears the input buffer
 		userInput = getInput(min, max);
 	}
 
@@ -326,10 +321,10 @@ void depositMoney(int index, int month, int day, int year) {
         float givenBalanceTemp;
 
         printf("Enter the amount you want to deposit: ");
-        while(scanf("%f", &deposit) != 1) {
+        while (scanf("%f", &deposit) != 1) {
             printf("Invalid input. Enter float or integer values only.\n");
 
-            while(getchar() != '\n');
+            while (getchar() != '\n');
             printf("Enter the amount you want to withdraw: ");
         }
 
@@ -339,11 +334,11 @@ void depositMoney(int index, int month, int day, int year) {
         givenBalanceTemp += deposit; 
 
         // checks if the current balance is too large for the bank to handle
-        if(givenBalanceTemp > 1000000.0)
+        if (givenBalanceTemp > 1000000.0) {
             printf("Invalid amount. Your deposit have exceeded the bank capacity.\n\n");
-        else if(deposit < 500.0)
+        } else if (deposit < 500.0) {
             printf("Invalid amount. The minimum deposit amount should be 500.00.\n\n");
-        else {
+        } else {
             accounts[index].accountBalance = givenBalanceTemp;
             printf("\nAmount successfully deposited to your account.\n\n");
 
@@ -359,7 +354,7 @@ void depositMoney(int index, int month, int day, int year) {
 
         displayQuestion(); 
         caseOneChoice = getInput(1, 2);
-    } while(caseOneChoice == 1);
+    } while (caseOneChoice == 1);
 }
 
 // function for case 2: withdrawing money
@@ -370,20 +365,20 @@ void withdrawMoney(int index, int month, int day, int year) {
         float withdraw;
 
         printf("Enter the amount you want to withdraw: ");
-        while(scanf("%f", &withdraw) != 1) {
+        while (scanf("%f", &withdraw) != 1) {
             printf("Invalid input. Enter float or integer values only.\n");
 
-            while(getchar() != '\n');
+            while (getchar() != '\n');
             printf("Enter the amount you want to withdraw: ");
         }
 
         // checks if the desired amount to withdraw is
         // greater than the user's current balance
-        if(withdraw > accounts[index].accountBalance)
+        if (withdraw > accounts[index].accountBalance) {
             printf("Invalid amount. The amount you want to withdraw exceeded your current balance.\n\n");
-        else if(withdraw < 500.0) 
+        } else if (withdraw < 500.0) {
             printf("Invalid amount. The minimum withdrawal amount should be 500.00.\n\n");
-        else {
+        } else {
             accounts[index].accountBalance -= withdraw;
             printf("\nAmount successfully withdrawn from your account.\n\n");
 
@@ -399,7 +394,7 @@ void withdrawMoney(int index, int month, int day, int year) {
                     
         displayQuestion();
         caseTwoChoice = getInput(1, 2);
-    } while(caseTwoChoice == 1);
+    } while (caseTwoChoice == 1);
 }
 
 // function for displaying a question for the user
