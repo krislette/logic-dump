@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
         printf("\nAre you sure you want to exit?\n\n[1] Yes\n[2] No\n\nChoice: ");
         exitChoice = getInput(1, 2); // has two parameters: min, max
 
-    } while(exitChoice == 2);
+    } while (exitChoice == 2);
 
     printf("\nThank you for using the program.\n");
     
@@ -56,9 +56,7 @@ int main(int argc, const char * argv[]) {
 
 // function for printing '='
 void dividerDesign(int count) {
-    int i;
-
-    for(i = 0; i < count - 1; i++) {
+    for (int i = 0; i < count - 1; i++) {
         printf("=");
     }   
     printf("=\n");
@@ -68,7 +66,7 @@ void dividerDesign(int count) {
 int fileChecker() {
     file = fopen(BANK_DETAILS_FILE, "r"); // opens the file in read mode
 
-    if(file == NULL) {
+    if (file == NULL) {
         dividerDesign(80);
         printf("\n\t\t\t\t\b\bUnable to open file.\n\n");
         fclose(file);
@@ -87,10 +85,10 @@ int fileChecker() {
 void readAccounts() {
     file = fopen(BANK_DETAILS_FILE, "r");
 
-    for(int i = 0; i < MAX_ACC_DETAILS; i++) {
+    for (int i = 0; i < MAX_ACC_DETAILS; i++) {
         fscanf(file, "%s %s %f\n", accounts[i].accountNumber, accounts[i].accountPin, &accounts[i].accountBalance);
 
-        if(strlen(accounts[i].accountNumber) != 0) {
+        if (strlen(accounts[i].accountNumber) != 0) {
             indexAccounts++;
         }
     }
@@ -100,7 +98,7 @@ void readAccounts() {
 // function for writing data entered into a text file
 void writeFile() {
     file = fopen(BANK_DETAILS_FILE, "w");
-    for(int i = 0; i < indexAccounts; i++) {
+    for (int i = 0; i < indexAccounts; i++) {
         fprintf(file, "%s %s %0.2f\n", accounts[i].accountNumber, accounts[i].accountPin, accounts[i].accountBalance);
     }
     fclose(file);
@@ -111,7 +109,7 @@ void deleteAccount() {
     int deleteAgain;
     
     do {
-        if(indexAccounts == 0) {
+        if (indexAccounts == 0) {
             printf("\n");
             dividerDesign(80);
             printf("\nDatabase empty. No existing account found.\n\n");
@@ -124,17 +122,17 @@ void deleteAccount() {
             int accInd;
 
             printf("\nEnter the account number of the account you want to delete: ");
-            while(scanf("%d", &numberInp) != 1 || numberInp < 10000 || numberInp > 99999) {
+            while (scanf("%d", &numberInp) != 1 || numberInp < 10000 || numberInp > 99999) {
                 printf("Invalid input. Enter a valid account number.\n");
 
-                while(getchar() != '\n');
+                while (getchar() != '\n');
                 return deleteAccount();
             }
             itoa(numberInp, deleteAcc, 10);
 
             int found = 0;
-            for(int i = 0; i < MAX_ACC_DETAILS; i++) {
-                if(strcmp(accounts[i].accountNumber, deleteAcc) == 0) {
+            for (int i = 0; i < MAX_ACC_DETAILS; i++) {
+                if (strcmp(accounts[i].accountNumber, deleteAcc) == 0) {
                     found = 1;
                     accInd = i;
                     pinChecker(i);
@@ -142,7 +140,7 @@ void deleteAccount() {
                 }
             }
             
-            if(!found) {
+            if (!found) {
                 printf("Account Number not found. Try again.\n");
                 return deleteAccount();
             }
@@ -153,10 +151,10 @@ void deleteAccount() {
             printf("\nAre you sure you want to delete this account?\n\n[1] Yes\n[2] No\n\n");
             printf("Choice: ");
 
-            if(getInput(1, 2) == 2) return;
+            if (getInput(1, 2) == 2) return;
 
-            for(int i = 0; i < indexAccounts; i++) {
-                if(i >= accInd) {
+            for (int i = 0; i < indexAccounts; i++) {
+                if (i >= accInd) {
                     accounts[i] = accounts[i + 1];
                 }
             }
@@ -169,7 +167,7 @@ void deleteAccount() {
             displayQuestion();
             deleteAgain = getInput(1, 2);
         }
-    } while(deleteAgain == 1);
+    } while (deleteAgain == 1);
 }
 
 // function to check the pin entered by the user
@@ -179,21 +177,21 @@ void pinChecker(int index) {
     
     printf("Enter PIN: ");
     // takes an integer account number input from the user to be checked 
-    while(scanf("%d", &numberInput) != 1) {
+    while (scanf("%d", &numberInput) != 1) {
     	printf("Invalid input. Try again.\n");
     	
-    	while(getchar() != '\n');
+    	while (getchar() != '\n');
     	printf("Enter PIN: ");
 	}
 	// checks if the account number inputted by the user is a 4-digit number
-	if(numberInput > 9999 || numberInput < 1000) {
+	if (numberInput > 9999 || numberInput < 1000) {
 		printf("Invalid input. Your PIN should consist of 4 digits only.\n");
 		return pinChecker(index);
 	}
 	// converts the int input to string and stores 
 	itoa(numberInput, pin, 10); // syntax: itoa(int value, char str, int base) 
 
-    if(strcmp(pin, accounts[index].accountPin) != 0) {
+    if (strcmp(pin, accounts[index].accountPin) != 0) {
         printf("The pin you have entered is incorrect. Try again.\n");
         return pinChecker(index);
     }
@@ -201,7 +199,7 @@ void pinChecker(int index) {
 
 // function for checking if the choice entered by the user is a valid input
 int validInputChecker(int input, int min, int max) {
-    if(input < min || input > max) return 0;
+    if (input < min || input > max) return 0;
     else return 1;
 }
 
@@ -214,10 +212,10 @@ int getInput(int min, int max) {
 
     int validInput = validInputChecker(userInput, min, max);
 
-    if(!validInput) {
+    if (!validInput) {
 		printf("Invalid input. Enter numbers from %d-%d only.\n", min, max);
 
-		while(getchar() != '\n');  // clears the input buffer
+		while (getchar() != '\n');  // clears the input buffer
 		userInput = getInput(min, max);
 	}
 
