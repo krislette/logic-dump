@@ -546,7 +546,7 @@ int getInput(int min, int max) {
     if (!validInput) {
 		printf("Invalid input. Enter numbers from %d-%d only.\n", min, max);
 
-		while (getchar() != '\n');  // clears the input buffer
+		while (getchar() != '\n'); // clears the input buffer
 		userInput = getInput(min, max);
 	}
 
