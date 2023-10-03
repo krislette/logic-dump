@@ -64,11 +64,11 @@ int main(int argc, const char * argv[]) {
                 break;
             }
             case 2: {
-                createNewAccount();
+                createNewAccount(); // calls the function for creating a new account
                 break;
             }
             case 3: {
-                deleteAccount();
+                deleteAccount(); // calls the function for deleting an existing account
                 break;
             }
             case 4: {
