@@ -4,7 +4,8 @@
 int count = 1; // variable for monitoring the number of seats occupied
 
 // structure for the passenger seats
-struct passengerSeat {int row;
+struct passengerSeat {
+    int row;
     char a;
     char b;
     char c;
